@@ -1,0 +1,24 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: comms-client
+  labels:
+    app: client
+spec:
+  containers:
+    - name: comms-client
+      image: comms-client
+      imagePullPolicy: Never
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: comms-client-service
+spec:
+  selector:
+    app: client
+  ports:
+  - port: 80
+    targetPort: 4200

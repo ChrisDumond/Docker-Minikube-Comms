@@ -1,0 +1,19 @@
+# base image
+FROM node:9.6.1
+
+# set working directory
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+# install app dependencies
+COPY package.json .
+COPY package-lock.json .
+RUN npm install
+
+# add app
+COPY . /usr/src/app
+
+EXPOSE 4200
+
+# start app
+CMD ["npm", "start"]
